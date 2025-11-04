@@ -234,7 +234,8 @@ body { padding-bottom: 0; }
   text-align: right;
 }
 
-.footer-left .site-title {
+.footer-left .site-title,
+.footer-links .site-title {
   margin: 0;
   font-weight: 700;
   color: #222;
