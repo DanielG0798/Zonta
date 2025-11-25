@@ -44,7 +44,7 @@ body {
   left: 0;
   right: 0;
   height: var(--hero-bar-height);   /* use variable */
-  background: rgba(128, 0, 32, 1);
+  background: var(--zonta-mahogany);
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;

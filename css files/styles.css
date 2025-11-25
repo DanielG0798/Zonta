@@ -6,6 +6,7 @@ html, body {
 }
 
 :root {
+  --font-family: Hypatia Sans, Segoe UI, Roboto, Arial, sans-serif;
   --zonta-mahogany: #802528;
   --zonta-gold: #F5BD47;
   --zonta-gold-40: #FFE3B6;
@@ -16,8 +17,8 @@ html, body {
   --muted: #757575;
   /* Variables for header and nav bar adjusting */
   --header-padding-vertical: 18px;
-  --logo-height: 56px;
-  --nav-font-size: 1rem;
+  --logo-height: 70px;
+  --nav-font-size: 1.2rem;
   --nav-padding-vertical: 10px;
   --nav-gap: 22px;
 }
@@ -27,7 +28,7 @@ html, body {
 }
 
 body {
-  font-family: Hypatia Sans, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-family);
   margin: 0;
   color: #222;
   background: #fff;
@@ -48,50 +49,117 @@ body { padding-bottom: 0; }
 .site-header {
   background: var(--zonta-mahogany);
   color: var(--white-text);
-  /* vertical buffer after header so content doesn't sit directly beneath it */
   margin-bottom: 32px;
-  /* ensure header appears above page-specific hero bars or pseudo-elements */
   position: relative;
   z-index: 1000;
 }
 
-/* center the footer container so the footer-row can distribute columns across the page
-   add left/right gutters so the first/last columns sit 75px from the page edges */
-.site-footer .container {
-  /* make footer container span the full viewport so footer assets can be spaced across the screen */
-  margin-top: 10;
-  padding-left: 75px;
-  padding-right: 75px;
-  max-width: none;
-  width: 100%;
-  box-sizing: border-box;
-}
-
+/* Flex container with left/right padding + max-width */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--header-padding-vertical) 0;
+
+  /* control spacing from edges */
+  padding: var(--header-padding-vertical) 40px;
+
+  /* keeps content centered on big monitors */
+  max-width: 1400px;
+  margin: 0 auto;
+
   min-height: 72px;
 }
 
+/* Logo section */
 .brand-link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding-left: 24px;
   color: var(--white-text);
 }
 
 .brand-logo {
   height: var(--logo-height);
   width: auto;
-  margin-right: 12px;
+  margin-right: 40px;
+}
+
+/* Desktop nav */
+.main-nav {
+  display: flex;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--white-text);
+  text-decoration: none;
+  padding: 8px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: var(--nav-font-size);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-link.active {
+  background: var(--zonta-gold);
+  color: #082635;
+}
+
+/* ---------------------- */
+/* Mobile Responsive View */
+/* ---------------------- */
+@media (max-width: 810px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .main-nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    padding: 12px 0;
+    background: transparent;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 10px 4px;
+  }
+}
+
+/* center the footer container so the footer-row can distribute columns across the page
+   add left/right gutters so the first/last columns sit 75px from the page edges */
+.site-footer .container {
+  margin-top: 10px;
+  max-width: 1100px;     
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px 16px;    /* internal gutters that scale on small screens */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .header-center { 
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 12px;letter-spacing: 2px;
   opacity: 0.95;
   padding: 0 6px;
@@ -103,7 +171,7 @@ body { padding-bottom: 0; }
   font-size: 0.95rem;
 }
 .contact-sep { margin: 0 8px; color: rgba(255,255,255,0.6); }
-@media (max-width: 640px) {
+@media (max-width: 810px) {
   .header-center { display: none; } /* hide on narrow screens */
   .site-header { margin-bottom: 16px; }
 }
@@ -125,14 +193,20 @@ body { padding-bottom: 0; }
 
 /* center a row of footer columns as a group */
 .footer-row {
-  /* switch to grid so we can precisely place the three columns: left, center, right */
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* left grows, center auto, right grows */
+  grid-template-columns: repeat(3, minmax(160px, 1fr)); /* 3 columns that grow equally, but never smaller than 160px */
   align-items: start;
   gap: 48px;
   padding: 12px 0 0;
+  justify-items: stretch; /* each column fills its grid cell */
 }
 
+/* Prevent the newsletter input/form from growing so large it overlaps the center column */
+.footer-newsletter .newsletter-form {
+  width: auto;          /* allow the form to size to its content */
+  max-width: 360px;     /* keep the input+button from overlapping neighboring columns */
+  box-sizing: border-box;
+}
 
 /* default column sizing inside the centered row */
 .footer-row > div {
@@ -165,19 +239,35 @@ body { padding-bottom: 0; }
 .footer-links {
   /* center the links column horizontally in the center grid cell */
   justify-self: center;
-  text-align: center;
+  text-align: left;
 }
+
 .footer-links-list { list-style: none; padding: 0; margin: 8px 0 0; }
 .footer-links-list li { margin: 8px 0; }
 .footer-links-list a { color: #082635; text-decoration: none; }
-.footer-newsletter input[type="email"] { padding: 8px 10px; width: 100%; box-sizing: border-box; margin-bottom: 8px; }
+.footer-newsletter input[type="email"] {
+  padding: 8px 10px;
+  width: auto; /* allow input to size inside the flex row */
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
 .newsletter-form button { padding: 8px 12px; background: var(--zonta-mahogany); color: #fff; border: none; border-radius: 4px; cursor: pointer; }
 .footer-thanks { text-align: left; }
 
 /* footer-middle: links + newsletter side-by-side */
 .footer-newsletter input[type="email"] { margin-bottom: 8px; }
-.newsletter-form { display: flex; gap: 8px; }
-.newsletter-form input[type="email"] { flex: 1 1 auto; }
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  width: 100%; /* let the form fill available column width */
+  align-items: center;
+}
+.newsletter-form input[type="email"] {
+  flex: 1 1 auto;
+  min-width: 0; /* allows the input to shrink inside a flex container */
+  width: auto;  /* override any earlier width:100% rules */
+  box-sizing: border-box;
+}
 .newsletter-form button { white-space: nowrap; }
 
 /* make the three footer columns equal width */
@@ -191,6 +281,7 @@ body { padding-bottom: 0; }
 /* remove previous left nudge so columns are even */
 .footer-left {
   margin-left: 0;
+  margin-right: 50px; /* space out from center column */
 }
 
 /* right-align the newsletter column content so it mirrors the left column spacing */
@@ -277,8 +368,15 @@ body { padding-bottom: 0; }
   border-radius: 2px;
 }
 
+/* Center the decorative underline under the center Links column
+   and keep it visually shorter so it remains centered at narrow widths */
+.footer-links .footer-underline {
+  width: 100%;           /* make the center underline shorter than the full column */
+  max-width: 150px;     /* cap maximum length for large screens */
+}
+
 /* Make the underline shorter on small screens */
-@media (max-width: 640px) {
+@media (max-width: 810px) {
   .footer-underline {
     width: 60px;
     height: 3px;
@@ -318,7 +416,7 @@ body { padding-bottom: 0; }
 }
 
 /* Responsive: stack on small screens */
-@media (max-width: 640px) {
+@media (max-width: 810px) {
   .footer-center {
     flex-direction: column;
     align-items: flex-start;
@@ -329,7 +427,7 @@ body { padding-bottom: 0; }
   }
   .divider-text { display: none; } /* hide decorative divider on small screens */
   .footer-right { text-align: left; }
-  .footer-underline { max-width: 240px; width: 64%; }
+  .footer-underline { max-width: 240px; width: 100%; }
   /* reduce the gap on very small screens so layout doesn't overflow */
   /* removed small-screen override for .footer-links when reverted */
   /* on small screens remove large gutters and stack columns */
@@ -340,22 +438,6 @@ body { padding-bottom: 0; }
   .footer-middle { flex-direction: column; }
   .newsletter-form { flex-direction: column; }
   .newsletter-form button { width: 100%; }
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 18px;
-}
-
-.nav-link {
-  color: var(--white-text);
-  text-decoration: none;
-  padding: 8px 6px;
-  border-radius: 4px;
-  font-weight: 500;
 }
 
 .nav-link:hover,
@@ -370,7 +452,7 @@ body { padding-bottom: 0; }
 }
 
 /* Responsive: stack nav under brand on small screens */
-@media (max-width:640px) {
+@media (max-width:810px) {
   .header-inner {
     flex-direction: column;
     align-items: stretch;
@@ -393,16 +475,6 @@ body { padding-bottom: 0; }
   margin-left: 75px; 
 }
 
-/* (removed duplicate footer-row/flex rules so grid-based layout above takes effect) */
-
-.hero-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(2,18,30,0.15);
-}
-
 /* Membership/about hero: keep text and image side-by-side and prevent image from growing too large */
 .about-hero .hero-inner {
   display: flex;
@@ -413,7 +485,6 @@ body { padding-bottom: 0; }
   margin: 0 auto;
   padding: 0 16px;
 }
-
 
 .about-hero .hero-text {
   flex: 1 1 46%;
@@ -429,24 +500,9 @@ body { padding-bottom: 0; }
 .about-hero .hero-text { order: 1; }
 .about-hero .hero-image--right { order: 2; }
 
-@media (max-width: 900px) {
-  .about-hero .hero-inner {
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 12px;
-  }
-  .about-hero .hero-text,
-  .about-hero .hero-image { flex: 1 1 100%; max-width: 100%; }
-}
 
-@media (max-width:900px) {
-  .hero {
-    flex-direction: column;
-  }
-  .hero-figure {
-    width: 100%;
-  }
-}
+
+
 
 
 
