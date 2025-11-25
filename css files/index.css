@@ -112,8 +112,7 @@
     height: auto;
     margin-top: 20px;
   }
-
-  .spill {
-    display: none; /* Optional: hide gradient on mobile */
-  }
 }
+
+ /* .spill { */
+/*  display: none;  Optional: hide gradient on smaller screens */
