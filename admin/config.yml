@@ -6,37 +6,45 @@ media_folder: "Assets"
 public_folder: "/Assets"
 
 collections:
-  - name: "homepage"
-    label: "Homepage Content"
-    file: "content/homepage.json"
+  - name: "pages"
+    label: "Pages"
+    files: 
     fields:
-      - { name: "heroTitle", label: "Hero Title", widget: "string" }
-      - { name: "mainParagraph", label: "Main Paragraph", widget: "text" }
-      - { name: "heroImage", label: "Hero Image", widget: "image" }
-  - name: "events"
-    label: "Events"
-    folder: "content/events"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: "title", label: "Event Title", widget: "string" }
-      - { name: "description", label: "Full Event Description", widget: "markdown" }
-      - { name: "image", label: "Event Image", widget: "image" }
-      - { name: "date", label: "Event Date", widget: "datetime" }
-      - { name: "buttonText", label: "Button Text", widget: "string", required: false }
-      - { name: "buttonLink", label: "Button Link", widget: "string", required: false }
-
-  - name: "about"
-    label: "About Page"
-    file: "content/about.json"
-    fields:
-      - { name: "heroImage", label: "Hero Main Image", widget: "image" }
-      - { name: "introText", label: "Intro Paragraph", widget: "text" }
-      - name: "cards"
-        label: "Info Cards"
-        widget: "list"
+      # A. Homepage
+      - name: "homepage"
+        label: "Homepage Content"
+        file: "content/homepage.json"
         fields:
-          - { name: "title", label: "Card Title", widget: "string" }
-          - { name: "image", label: "Card Image", widget: "image" }
-          - { name: "text", label: "Card Text", widget: "text" }
-          - { name: "link", label: "Link URL (Optional)", widget: "string", required: false }
+          - { name: "heroTitle", label: "Hero Title", widget: "string" }
+          - { name: "mainParagraph", label: "Main Paragraph", widget: "text" }
+          - { name: "heroImage", label: "Hero Image", widget: "image" }
+      
+      # B. About Page
+      - name: "about"
+        label: "About Page"
+        file: "content/about.json"
+        fields:
+          - { name: "heroImage", label: "Hero Main Image", widget: "image" }
+          - { name: "introText", label: "Intro Paragraph", widget: "text" }
+          - name: "cards"
+            label: "Info Cards"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Card Title", widget: "string" }
+              - { name: "image", label: "Card Image", widget: "image" }
+              - { name: "text", label: "Card Text", widget: "text" }
+        # 2. THE "EVENTS" COLLECTION
+      - name: "events"
+        label: "Events"
+        folder: "content/events"
+        create: true
+        slug: "{{slug}}"
+        fields:
+          - { name: "title", label: "Event Title", widget: "string" }
+          - { name: "description", label: "Full Event Description", widget: "markdown" }
+          - { name: "image", label: "Event Image", widget: "image" }
+          - { name: "date", label: "Event Date", widget: "datetime" }
+          - { name: "buttonText", label: "Button Text", widget: "string", required: false }
+          - { name: "buttonLink", label: "Button Link", widget: "string", required: false }
+
+  
