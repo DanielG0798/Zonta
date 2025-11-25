@@ -6,11 +6,10 @@ media_folder: "Assets"
 public_folder: "/Assets"
 
 collections:
+  # Collection 1: "Pages" (Must use 'files' list with hyphens)
   - name: "pages"
     label: "Pages"
-    files: 
-    fields:
-      # A. Homepage
+    files:
       - name: "homepage"
         label: "Homepage Content"
         file: "content/homepage.json"
@@ -19,7 +18,6 @@ collections:
           - { name: "mainParagraph", label: "Main Paragraph", widget: "text" }
           - { name: "heroImage", label: "Hero Image", widget: "image" }
       
-      # B. About Page
       - name: "about"
         label: "About Page"
         file: "content/about.json"
@@ -33,18 +31,18 @@ collections:
               - { name: "title", label: "Card Title", widget: "string" }
               - { name: "image", label: "Card Image", widget: "image" }
               - { name: "text", label: "Card Text", widget: "text" }
-        # 2. THE "EVENTS" COLLECTION
-      - name: "events"
-        label: "Events"
-        folder: "content/events"
-        create: true
-        slug: "{{slug}}"
-        fields:
-          - { name: "title", label: "Event Title", widget: "string" }
-          - { name: "description", label: "Full Event Description", widget: "markdown" }
-          - { name: "image", label: "Event Image", widget: "image" }
-          - { name: "date", label: "Event Date", widget: "datetime" }
-          - { name: "buttonText", label: "Button Text", widget: "string", required: false }
-          - { name: "buttonLink", label: "Button Link", widget: "string", required: false }
+              - { name: "link", label: "Link URL", widget: "string", required: false }
 
-  
+  # Collection 2: "Events" (Must use 'folder')
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Event Title", widget: "string" }
+      - { name: "description", label: "Full Event Description", widget: "markdown" }
+      - { name: "image", label: "Event Image", widget: "image" }
+      - { name: "date", label: "Event Date", widget: "datetime" }
+      - { name: "buttonText", label: "Button Text", widget: "string", required: false }
+      - { name: "buttonLink", label: "Button Link", widget: "string", required: false }
