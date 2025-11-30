@@ -2,11 +2,32 @@
   "events_list": [
     {
       "posted_at": "2025-11-28T17:56:00.000-05:00",
-      "title": "this will be future event",
-      "start_date": "12/01/2025",
-      "start_time": "5:56 pm",
-      "description": "event should still be here",
-      "image": "/Assets/Group-photo-edit.png"
+      "title": "Come help us build!",
+      "start_date": "12/08/2025",
+      "start_time": "8:30 am",
+      "description": "Help is needed for **Habitat for Humanity**! Make a difference today by helping build and support one of our sponsors!",
+      "image": "/Assets/Habitat-4-Humanity.png",
+      "end_time": "2:00 pm"
+    },
+    {
+      "posted_at": "2025-11-30T04:16:00.000-05:00",
+      "title": "Gift Exchange ",
+      "start_date": "12/17/2025",
+      "end_date": "12/19/2025",
+      "start_time": "10:00 am",
+      "end_time": "12:00 pm",
+      "description": "Help us give some joy to families in need this holiday!",
+      "image": "/Assets/gifts.JPG"
+    },
+    {
+      "posted_at": "2025-11-30T04:20:00.000-05:00",
+      "title": "Donate to help a good cause!",
+      "start_date": "11/30/2025",
+      "start_time": "9:00 am",
+      "end_time": "4:00 pm",
+      "description": "Donations will be accepted during the hours provided above, click the link in the title for more information.",
+      "link": "https://zonta-naples.org/",
+      "image": "/Assets/standingSign.jpg"
     }
   ]
 }
