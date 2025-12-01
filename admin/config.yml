@@ -32,7 +32,7 @@ collections:
               - { name: "title", label: "Event Title", widget: "string" }
               - { name: "start_date", label: "Start Date", widget: "datetime", format: "MM/DD/YYYY", date_format: "MM/DD/YYYY", time_format: false }
               - { name: "end_date", label: "End Date", widget: "datetime", format: "MM/DD/YYYY", date_format: "MM/DD/YYYY", time_format: false, required: false }
-              - { name: "start_time", label: "Start Time", widget: "datetime", date_format: false, time_format: "h:mm a", format: "h:mm a" }
+              - { name: "start_time", label: "Start Time", widget: "datetime", date_format: false, time_format: "h:mm a", format: "h:mm a", required: false }
               - { name: "end_time", label: "End Time", widget: "datetime", date_format: false, time_format: "h:mm a", format: "h:mm a", required: false }
               - name: "description"
                 label: "Event Description"

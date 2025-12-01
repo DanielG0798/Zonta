@@ -24,19 +24,19 @@
   min-height: 550px; 
 }
 
-/* PLACEMENT OF CHILDREN */
+/* PLACEMENT OF CHILDREN USING grid-area */
 .hero-content {
   z-index: 3;
   grid-area: content-area;
-  align-self: top; 
-  max-width: none; 
+  align-self: top; /* Vertically centers the text content within its cell */
+  max-width: none; /* Let the grid column size handle the width */
 }
 
 .group-photo {
   grid-area: image-area;
-  align-self: end; 
-  justify-self: end; 
-  position: relative; 
+  align-self: end; /* Aligns the bottom of the image to the bottom of the cell (Row 1) */
+  justify-self: end; /* Aligns the image to the right of its cell */
+  position: relative; /* Keep relative/z-index for the spill effect */
   z-index: 2;
   opacity: 0;
   animation: fadeIn 1.4s ease-out forwards;
@@ -46,7 +46,7 @@
 /* PLACEMENT OF CAROUSEL */
 .carousel-wrapper {
   grid-area: carousel-area;
-  position: relative; 
+  position: relative; /* Change from absolute to relative for normal flow */
   bottom: auto; 
   left: auto;
   transform: none; 
@@ -68,7 +68,7 @@
 /* --- TITLE --- */
 .hero-content h1 {
   text-transform: capitalize;
-  text-shadow: -4px 2px 5px rgba(0,0,0,0.3);
+  text-shadow: -4px 2px 5px rgba(0,0,0,0.3); /*x,y,z offset and blur*/
   font: bold clamp(36px, 4vw, 54px) / clamp(48px, 5vw, 64px) var(--font-family);
   margin-bottom: 20px;
   color: var(--white-text);
@@ -76,14 +76,13 @@
 
 /* --- PARAGRAPH --- */
 .hero-content p {
-  text-shadow: -4px 2px 5px rgba(0,0,0,0.3);
+  text-shadow: -4px 2px 5px rgba(0,0,0,0.3); /*x,y,z offset and blur*/
   color: var(--white-text);
   font: clamp(18px, 2vw, 34px) / clamp(28px, 3vw, 44px) var(--font-family);
   line-height: 1.5;
   margin-right: 40px;
-  padding-bottom: 10px; 
+  padding-bottom: 10px; /* space between text and button */
 }
-
 /* --- IMAGE ANIMATIONS --- */
 .spill {
   position: absolute;
@@ -91,11 +90,12 @@
   right: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;   
+  object-fit: cover;   /* ensures it scales like background-size:cover */
   object-position: center;
   z-index: 0;
   animation: fadeIn 1.6s ease-out forwards;
 }
+
 
 /* --- BUTTON --- */
 .hero-btn {
@@ -111,38 +111,45 @@
 
 .hero-btn:hover {
     scale: 1.05;
-    background: var(--zonta-mahogany); 
-    color: var(--white-text); 
+    background: var(--zonta-mahogany); /* change button background on hover */
+    color: var(--white-text); /* make button text white on hover */
 }
 
 .carousel::-webkit-scrollbar {
   display: none; 
 }
 
-/* --- CAROUSEL TRACK --- */
+/* --- CAROUSEL TRACK (The Animated Element) --- */
 .carousel-track {
     display: flex;
     white-space: nowrap;
     width: clamp(600px, 90vw, 1200px);
+    /* Applied the marquee animation */
     animation: scroll-left 30s linear infinite;
     animation-play-state: running;
 }
 
+/* Pause on hover (Optional nice-to-have) */
+/* .carousel-wrapper:hover .carousel-track {
+    animation-play-state: paused;
+} */
+
+/* The 'group' is now responsible for holding the items in one row */
 .group {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5em;
-    flex-shrink: 0; 
-    padding-right: 5em; 
+    flex-shrink: 0; /* Prevents the group from shrinking */
+    padding-right: 5em; /* Space between the end of one group and the start of the next */
 }
 .card {
   flex: 0 0 auto;
   width: clamp(60px, 16vw, 200px);
   aspect-ratio: 1 / 1;
-  overflow: hidden;      
+  overflow: hidden;      /* keeps image inside the box */
   border-radius: 1em;
-  padding: 1rem;       
+  padding: 1rem;       /* small padding for logo "air" */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,10 +162,9 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain; 
+  object-fit: contain; /* keeps whole logo visible, preserves ratio */
   object-position: center;
 }
-
 /* --- FADING EFFECT --- */
 .carousel-wrapper::before,
 .carousel-wrapper::after {
@@ -166,37 +172,57 @@
    position: absolute;
    top: 50%;
    transform: translateY(-50%);
-   width: clamp(30px, 12vw, 120px); 
-   height: clamp(60px, 16vw, 200px); 
+   width: clamp(30px, 12vw, 120px); /* fade width */
+   height: clamp(60px, 16vw, 200px); /* fade height = card height */
    pointer-events: none;
    z-index: 10;
 }
 
+/* Left */
 .carousel-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.53), rgba(0,0,0,0));
+    background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.53),
+      rgba(0,0,0,0)
+    );
 }
 
+/* Right */
 .carousel-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0));
+    background: linear-gradient(to left,
+      rgba(0, 0, 0, 0.53),
+      rgba(0, 0, 0, 0)
+    );
 }
-
 .events-title{
   font-size: 2.5em;
   text-align: center;
+  margin-bottom: 30px;
 }
+.events-title::after {
+        content: "";
+        display: block;
+        width: 100%;
+        max-width: 900px;
+        height: 4px;
+        background: #666; /* Match footer underline color */
+        border-radius: 2px;
+        margin: 16px auto 30px auto; /* Center and add spacing below */
+    }
 .events-list {
+  /* Ensure it spans the full width of the viewport */
   width: 100%; 
+  /* Centers the block-level content (like the events-container below it) */
   margin: 0 auto;
-  padding: 2vw; 
+  padding: 2vw; /* padding around the list section */
 }
 
-/* Event Rows */
+/* Container for the flex layout */
 .event-row {
     display: grid;
-    grid-template-columns: 300px 1fr;   
-    grid-template-rows: auto auto auto; 
+    grid-template-columns: 300px 1fr;   /* col1 = image, col2 = text */
+    grid-template-rows: auto auto auto; /* 3 rows */
     column-gap: 20px;
     row-gap: 10px;
     padding: 30px 0px;
@@ -205,43 +231,62 @@
     border-bottom: 1px solid #414040;
 }
 
-.event-content {
-    grid-column: 2; 
-    display: block;
-}
-
-.event-description {
-    grid-column: 2;
-    grid-row: 3;
-    margin-top: 6px;
-    font-size: 1.3em;
-    line-height: 1.5;
-}
-
 .event-image-col {
     grid-column: 1;
-    grid-row: 1 / span 3;   
+    grid-row: 1 / span 3;   /* occupies rows 1, 2, 3 */
 }
-.event-image-col img {
+
+.event-img-box {
+    width: clamp(250px, 25vw, 450px);  /* responsive like your carousel */
+    aspect-ratio: 4 / 3;              
+    border-radius: 1em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;          /* invisible box */
+    padding: 1rem;                    /* optional match to carousel cards */
+}
+
+.event-img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;              /* SAME as carousel */
+    object-position: center;
 }
 
-.EventDateTime {
+
+
+/* All text content (now direct children) go to column 2 */
+.event-row h4,
+.EventDateTime,
+.event-description {
     grid-column: 2;
-    grid-row: 2;
-    margin: 0;
-    font-size: 1.3em;
+    text-align: left; /* Ensure alignment is correct for desktop */
 }
 
+/* Title (row 1) */
 .event-row h4 {
-    grid-column: 2;
     grid-row: 1;
     margin: 0;
     font-size: 1.6em;
     line-height: 1.3;
     text-transform: capitalize;
+}
+
+/* Date/Time (row 2) */
+.EventDateTime {
+    grid-row: 2;
+    margin: 0;
+    font-size: 1.3em;
+}
+
+/* Description (row 3) */
+.event-description {
+    grid-row: 3;
+    margin-top: 6px;
+    font-size: 1.3em;
+    line-height: 1.5;
 }
 
 /* --- Animations --- */
@@ -252,7 +297,7 @@
 
 @keyframes scroll-left {
   from { transform: translateX(0%);}
-  to { transform: translateX(-140%);} 
+  to { transform: translateX(-140%);} /* Moves by the width of one duplicated group */
 }
 
 /* --- Responsive UI --- */
@@ -269,8 +314,7 @@
     min-height: auto;
     gap: 30px;
   }
-
-  /* Reset Grid Areas for Flex Context */
+ /* Reset Grid Areas for Flex Context */
   .hero-content {
     order: 1; /* Text first */
     width: 100%;
@@ -287,65 +331,89 @@
     margin-right: 0;
     font-size: 1.1rem;
   }
-
+  /* Image styling when stacked */
   .group-photo {
     order: 2; /* Image second */
     width: 100%;
-    max-width: 500px; /* Constrain image size like about.css */
+    max-width: 500px;
     margin: 0 auto;
     grid-area: auto; 
     opacity: 1; 
     animation: fadeIn 1s ease-out forwards; 
   }
-
+  /* Carousel height adjustment */
   .carousel-wrapper {
     order: 3; /* Carousel last */
     width: 100%;
-    height: 120px; 
+    height: 80px; 
     margin-top: 20px;
+    margin-bottom: 20px;
   }
-
+  
+  /* Carousel card size adjustment */
   .card {
     width: 80px;
     padding: 0.5rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 810px) {
     #events-container { margin-top: 0; }
+
+    .events-title::after {
+        max-width: 420px; /* Match footer underline width */
+        width: 90%;;
+    }
     
     .event-row {
-        display: grid;
-        grid-template-columns: 1fr;      
-        grid-template-rows: auto auto auto auto; 
-        row-gap: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 24px 0;
     }
-
+    /* 1. Image on top, full width */
     .event-image-col {
-        grid-column: 1;
-        grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
-
-    .event-image-col img {
+    /* The invisible container holding the image */
+    .event-img-box {
+        width: clamp(250px, 25vw, 450px);
+        aspect-ratio: 4 / 3;
+        border-radius: 1em;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    /* The image itself */
+    .event-img {
         width: 100%;
-        height: auto;   
-        max-height: 250px; 
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain; 
+        object-position: center;
     }
-
+    /* 2. Title second */
     .event-row h4 {
-        grid-column: 1;
-        grid-row: 2;
+        order: 2;
+        width: 100%;
+        margin: 0 0 6px 0;
     }
 
+    /* 3. Date third */
     .EventDateTime {
-        grid-column: 1;
-        grid-row: 3;
+        order: 3;
+        width: 100%;
+        margin: 0 0 10px 0;
     }
 
+    /* 4. Description last */
     .event-description {
-        grid-column: 1;
-        grid-row: 4;
+        order: 4;
+        width: 100%;
     }
 }
 
@@ -353,10 +421,10 @@
   .events-title { 
     padding-left: 0; 
     text-align: center;
-    font-size: 1.65rem; 
+    font-size: 2rem; 
   }
   .hero-btn {
-    width: 100%;
+    width: 60%;
     text-align: center;
   }
 }

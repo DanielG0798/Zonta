@@ -109,14 +109,17 @@
       const imgCol = document.createElement('div');
       imgCol.className = 'event-image-col';
 
+      const imgBox = document.createElement('div');
+      imgBox.className = 'event-img-box';
+
       const img = document.createElement('img');
-      img.className = 'contentTaggedListImageThumbnail';
+      img.className = 'event-img';
       img.src = event.image || '';
       img.alt = event.title || '';
       img.loading = 'lazy';
-      img.style.objectFit = 'cover';
 
-      imgCol.appendChild(img);
+      imgBox.appendChild(img);
+      imgCol.appendChild(imgBox);
 
       // ---- content section ----
       const h4 = document.createElement('h4');
