@@ -2,65 +2,168 @@
 <html lang="en">
 
 <head>
-    
-    <meta charset="UTF-8">
-    
-    <title>Zonta Club of Naples</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zonta Club of Naples – Contact</title>
     <link rel="stylesheet" href="../css files/styles.css">
     <link rel="stylesheet" href="../css files/contact.css">
-
     <link rel="stylesheet" href="../css files/header.css">
     <link rel="stylesheet" href="../css files/footer.css">
-
     <link rel="icon" type="image/png" href="../Assets/zonta-logo.png">
-
 </head>
 
 <body>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="brand">
-                <a href="../index.html" class="brand-link">
-                    <img src="../Assets/Zonta-Logo-White.png" alt="Zonta logo" class="brand-logo" onerror="this.style.display='none'">
-                </a>
-            </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="../index.html" class="brand-link">
+          <img src="../Assets/Zonta-Logo-White.png" alt="Zonta logo" class="brand-logo" onerror="this.style.display='none'">
+        </a>
+      </div>
 
-            <nav class="main-nav" aria-label="Main navigation">
-                <ul class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./membership.html">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./scholarship.html">Scholarship</a></li>
-                </ul>
-            </nav>
-        </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="./membership.html">Membership</a></li>
+          <li class="nav-item"><a class="nav-link" href="./scholarship.html">Scholarship</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-
-
-    <section class="hero container">
-        <div class="hero-text">
-            <h2>How to Contact Us:</h2> 
-        </div>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h2>How to Contact Us</h2>
+        <p>Choose the method below that's most convenient for you.</p>
+      </div>
     </section>
 
-    <section class="contact container">
-        <div class="contact-info">
-            <p class="body">Email: <a href="mailto:zontaclubofnaples@gmail.com">zontaclubofnaples@gmail.com</a></p>
+    <section class="card contact-grid" style="margin-top:20px;">
+
+      <!-- LEFT: Contact form (Formspree-ready). Replace the action URL with your Formspree form ID -->
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <p class="lead">Questions? Send us a message and we'll reply to the address you provide.</p>
+        <p class="contact-desc" style="margin-bottom: 14px; color: #000;">Please allow 2-3 days for us to get back to you! It helps to add info@zonta-naples.com to your recepiant list.</p>
+
+        <!-- FormSubmit endpoint -->
+        <form id="contactForm" action="https://formsubmit.co/wilsong20045@gmail.com" method="POST" novalidate>
+          <label for="name">Full Name <span class="asterisk">*</span></label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email <span class="asterisk">*</span></label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(optional)">
+
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Brief subject">
+
+          <label for="message">Message <span class="asterisk">*</span></label>
+          <textarea id="message" name="message" required></textarea>
+
+          <!-- Consent checkbox (accessible) -->
+          <div class="inline">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label class="consent" for="consent">I agree to be contacted regarding my inquiry.</label>
+          </div>
+
+          <!-- FormSubmit configuration -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <div class="actions">
+            <button class="form-submit" type="submit">Send Message</button>
+            <p class="submit-feedback" id="formFeedback" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: Hours & contact methods -->
+      <aside>
+        <h3>Contact Methods</h3>
+
+        <div class="muted-block" style="margin-top:12px;">
+          <h4>Phone</h4>
+          <p class="body">Ph. 973-864-7087</p>
+          <p class="contact-desc">If your call is not answered, Please leave a message. You could also use our contact form here.</p>
         </div>
+
+        <div class="muted-block" style="margin-top:12px;">
+          <h4>Mailing Address</h4>
+          <p class="body">P.O. Box 10911<br>Naples, FL 34101</p>
+          <p class="contact-desc">For more details on scholarship and membership applications, please see their respective pages.</p>
+        </div>
+
+        <div class="muted-block" style="margin-top:12px;">
+          <h4>Hours & Visit Info</h4>
+          <p><strong>Office Hours</strong><br>"populate later"</p>
+          <p><strong>Meeting Times</strong><br>"populate later".</p>
+          <p style="margin-top:8px;"><strong>Location</strong><br>"populate later"</p>
+        </div>
+
+      </aside>
+
     </section>
 
-    <section class="location container">
-        <div class="location-info">
-            <p class="container body site-title location">Location: 123 Main Street, Naples, FL 34102</p>
-        </div>
-    </section>
+  <!---*"_____________"*--->
+  <hr class="section-divider">
 
-    <div id="site-footer"></div>
+  <footer class="site-footer">
 
-    <script src="../js/includes.js"></script>
+            <div class="container footer-center">
+
+                <div class="footer-row">
+
+                <div class="footer-left">
+                    <p class="site-title">Zonta Club of Naples</p>
+                        <div class="footer-underline" aria-hidden="true"></div>
+                    <p class="site-sub">Member of Zonta International</p>
+                    <p class="site-sub">P.O. Box 10911</p>
+                    <p class="site-sub">Naples, FL 34102</p>
+
+                    <p class="site-sub">Phone: <a href="tel:9378647087">(937) 864-7087</a> | Email: <a href="mailto:info@zontaclubofnaples.org">info@zontaclubofnaples.org</a></p>
+                    <div class="footer-underline" aria-hidden="true"></div>
+
+                    <p class="site-sub">1200 Harger Road, Suite 330, Oak Brook, IL 60523-3384, USA</p>
+                    <p class="site-sub">Phone: <a href="tel:+16309281400">+1 (630) 928-1400</a> | Email: <a href="mailto:info@zontanaples.org">info@zontanaples.org</a></p>
+                </div>
+
+                <!-- Split into three even columns: left, links, newsletter -->
+                <div class="footer-links">
+                    <p class="site-title">Links</p>
+                    <div class="footer-underline" aria-hidden="true"></div>
+                    <ul class="footer-links-list">
+                        <li><a href="../html files/about.html">About</a></li>
+                        <li><a href="../html files/membership.html">Membership</a></li>
+                        <li><a href="../html files/scholarship.html">Scholarship</a></li>
+                        <li><a href="../html files/contact.html">Contact</a></li>
+                        <li><a href="https://zontastore.com/">Shop</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <p class="site-title">Newsletter</p>
+                    <form class="newsletter-form" action="#" method="post">
+                        <label for="newsletter-email" class="is-hidden">Email address</label>
+                        <input id="newsletter-email" type="email" name="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- copyright placed as a separate container within the footer -->
+            <div class="container copyright">
+                <p>&copy; 2025 Zonta Club. All rights reserved.</p>
+            </div>
+
+            </footer>
 
 </body>
+
 </html>
