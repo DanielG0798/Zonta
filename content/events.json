@@ -18,6 +18,13 @@
       "end_time": "12:00 pm",
       "description": "Help us give some joy to families in need this holiday!",
       "image": "/Assets/gifts.JPG"
+    },
+    {
+      "posted_at": "2025-12-02T10:30:00.000-05:00",
+      "title": "new event",
+      "start_date": "12/02/2025",
+      "description": "event descriptions",
+      "image": "/Assets/PACE.jpg"
     }
   ]
 }
